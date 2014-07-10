@@ -2,7 +2,8 @@
 #include"deque.h"
 
 struct deque_t *dequeAlloc(){
-	return NULL;
+	char * array;
+	size_t cap, tSize, size;
 }
 
 int dequeInit(struct deque_t *pThis, size_t tSize, size_t cap){
