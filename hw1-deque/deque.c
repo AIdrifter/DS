@@ -4,9 +4,11 @@
 struct deque_t *dequeAlloc(){
 	char * array;
 	size_t cap, tSize, size;
+	sizt_t front,rear;
 }
 
 int dequeInit(struct deque_t *pThis, size_t tSize, size_t cap){
+
 	return 0;
 }
 
