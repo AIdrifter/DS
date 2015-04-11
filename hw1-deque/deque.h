@@ -6,10 +6,17 @@
 #define __DS__DEQUE__EMPTY__        0x00000002
 #define __DS__DEQUE__OUT_OF_MEM__   0x00000004
 
-struct deque_t;
+struct deque_t{
+	char * array;
+	size_t cap, tSize;
+	size_t rear;
+};
 
 struct deque_t *dequeAlloc();
 /* Allocate memory for a deque. Return NULL if not enough memory */
+
+int dequeTraverse(struct deque_t *p, void *obj ,size_t i);
+/**/
 
 int dequeInit(struct deque_t *pThis, size_t tSize, size_t cap);
 /* Initialize pThis: set the size per object as tSize

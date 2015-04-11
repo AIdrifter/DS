@@ -5,11 +5,14 @@
 
 typedef struct deque_t deque;
 
+// DEBUG
+void dequeDisplay(deque *p);
+
+int type;
 int main()
 {
     deque *p = NULL;
     size_t cap, tSize;
-    int type;
     void *data = malloc(sizeof(double)*10);
     while(1){
         char cmd[10240] = {0};
@@ -88,6 +91,22 @@ int main()
             else if(choice == 9)
                 break;
         }
+        // for debug mode
+        dequeDisplay(p);
     }
 }
 
+
+void dequeDisplay(deque *p){
+    void *data = malloc(sizeof(double)*10);
+    int i=0;
+    puts("--------------------------------");
+    puts("Display queue content");
+    for(i=0; i< p->rear; i++){
+        dequeTracerse(p, data ,i);
+        printf("%d(",i);
+        printData(type, data);
+        printf(") ");
+    }
+    puts("\n--------------------------------");
+}
