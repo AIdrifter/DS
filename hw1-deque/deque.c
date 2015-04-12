@@ -30,7 +30,7 @@ int dequeInit(struct deque_t *p, size_t tSize, size_t cap){
 
 int dequeFree(struct deque_t *p){
     if(p!=NULL){
-        if(p->array!=NULL){
+        if(p->array){
             free(p->array);
         }
         free(p);

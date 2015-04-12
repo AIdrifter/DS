@@ -92,7 +92,8 @@ int main()
                 break;
         }
         // for debug mode
-        dequeDisplay(p);
+        if(p!=NULL)
+            dequeDisplay(p);
     }
 }
 
