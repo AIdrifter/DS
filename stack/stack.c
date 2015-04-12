@@ -17,7 +17,7 @@ int stackInit(struct stack_t* pThis, size_t tSize, size_t cap)
 {
 	pThis->cap=cap;
 	pThis->tSize=tSize;
-	pThis->size=0;
+	pThis->size=0; //stack's heighest
 	pThis->array=(char*)malloc(tSize*cap);
 	return (pThis->array!=NULL)?__DS__STACK__NORMAL__:__DS__STACK__OUT_OF_MEM__;
 }
