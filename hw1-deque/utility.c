@@ -53,20 +53,20 @@ void sPrintData(char *str, int type, void *data)
 	switch(type)
 	{
 		case __DS__INT__:
-			printf(str,"%d",*(int*)data); return;
+			sprintf(str,"%d",*(int*)data); return;
 		case __DS__SHORT__:
-			printf(str,"%hd",*(short*)data); return;
+			sprintf(str,"%hd",*(short*)data); return;
 		case __DS__FLOAT__:
-			printf(str,"%f",*(float*)data); return;
+			sprintf(str,"%f",*(float*)data); return;
 		case __DS__DOUBLE__:
-			printf(str,"%f",*(double*)data); return;
+			sprintf(str,"%f",*(double*)data); return;
 		case __DS__LONG__:
-			printf(str,"%ld",*(long*)data); return;
+			sprintf(str,"%ld",*(long*)data); return;
 		case __DS__LONGLONG__:
-			printf(str,"%lld",*(long long*)data); return;
+			sprintf(str,"%lld",*(long long*)data); return;
 		case __DS__CHAR__:
-			printf(str,"%c",*(char*)data); return;
+			sprintf(str,"%c",*(char*)data); return;
 		case __DS__STRING__:
-			printf(str,"%s",(char*)data); return;
+			sprintf(str,"%s",(char*)data); return;
 	}
 }
