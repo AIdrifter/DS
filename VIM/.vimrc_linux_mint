@@ -1,0 +1,264 @@
+set nu
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set hlsearch
+
+" random code
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+
+
+
+"add plugin
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" NERdtree
+Plugin 'scrooloose/nerdtree'
+Plugin 'SrcExpl'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
+
+" ctags
+Plugin 'taglist.vim'
+let Tlist_Ctags_Cmd='ctags'
+let Tlist_Show_One_File=1               "不同时显示多个文件的tag，只显示当前文件的
+let Tlist_WinWidt =28                   "设置taglist的宽度
+let Tlist_Exit_OnlyWindow=1             "如果taglist窗口是最后一个窗口，则退出vim
+"let Tlist_Use_Right_Window=1           "在右侧窗口中显示taglist窗口
+let Tlist_Use_Left_Windo =1             "在左侧窗口中显示taglist窗口:
+
+
+" color desert
+Plugin 'desert-warm-256'
+
+" vim-airline
+Plugin 'bling/vim-airline'
+map <TAB> :bp<CR>
+
+
+" tagbar
+Plugin 'majutsushi/tagbar'
+"nmap <Leader>tb :TagbarToggle<CR>      "快捷键设置
+let g:tagbar_ctags_bin='ctags'          "ctags程序的路径
+let g:tagbar_width=30                   "窗口宽度的设置
+map <F2> :Tagbar<CR>
+"autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()  "如果是c语言的程序的话，tagbar自动开启
+
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+"------------------------------------------------------------------------------------
+
+" for paste
+"set paste
+syntax on
+set t_Co=256       " Explicitly tell Vim that the terminal supports 256 colors
+
+
+
+"----------------airline設置----------
+set laststatus=2
+" 使用powerline打過補丁的字體
+let g:airline_powerline_fonts = 1
+" 開啟tabline
+let g:airline#extensions#tabline#enabled = 1
+" tabline中當前buffer兩端的分隔字符
+let g:airline#extensions#tabline#left_sep = ' '
+" tabline中未激活buffer兩端的分隔字符
+let g:airline#extensions#tabline#left_alt_sep = '|'
+" tabline中buffer顯示編號
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" 映射切換buffer的鍵位
+
+
+
+
+" High light unwanted spaces in end of line
+highlight ExtraWhitespace ctermbg=darkred guibg=darkcyan
+autocmd BufEnter * if &ft != 'help' | match ExtraWhitespace /\s\+$/ | endif
+autocmd BufEnter * if &ft == 'help' | match none /\s\+$/ | endif
+" set the runtime path to include Vundle and initialize
+
+"map NERDtree key
+nnoremap <silent> <F3> :NERDTree<CR>
+
+"vundle CTRLP
+let g:trlp_map = '<leader>p'
+let g:ctrlp_cmd = 'CtrlP'
+map <leader>f :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+
+"vundle ctrlp->function
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+let g:ctrlp_funky_syntax_highlight = 1
+
+let g:ctrlp_extensions = ['funky']
+
+"--------------------------------- background----------------------"
+
+colorscheme monokai
+
+" High light unwanted spaces in end of line
+hi CursorLine   cterm=NONE ctermbg=237 ctermfg=NONE
+set cursorline
+
+" High light unwanted spaces in end of line
+highlight ExtraWhitespace ctermbg=darkred guibg=darkcyan
+autocmd BufEnter * if &ft != 'help' | match ExtraWhitespace /\s\+$/ | endif
+autocmd BufEnter * if &ft == 'help' | match none /\s\+$/ | endif
+
+"--------------------------------- background----------------------"
+" hight line
+highlight TempKeyword1 cterm=underline,bold ctermbg=Blue ctermfg=White
+highlight TempKeyword2 cterm=underline,bold ctermbg=Green ctermfg=White
+highlight TempKeyword3 cterm=underline,bold ctermbg=Cyan ctermfg=White
+highlight TempKeyword4 cterm=underline,bold ctermbg=Red ctermfg=White
+highlight TempKeyword5 cterm=underline,bold ctermbg=Yellow ctermfg=White
+highlight TempKeyword6 cterm=underline,bold ctermbg=White ctermfg=DarkYellow
+highlight TempKeyword7 cterm=underline,bold ctermbg=White ctermfg=DarkRed
+highlight TempKeyword8 cterm=underline,bold ctermbg=White ctermfg=DarkGreen
+highlight TempKeyword9 cterm=underline,bold ctermbg=White ctermfg=DarkBlue
+highlight TempKeyword0 cterm=underline,bold ctermbg=White ctermfg=DarkMagenta
+nmap <leader>1 :call AddTempKeywords(1, "<C-R>=expand("<cword>")<CR>")<CR>
+nmap <leader>2 :call AddTempKeywords(2, "<C-R>=expand("<cword>")<CR>")<CR>
+nmap <leader>3 :call AddTempKeywords(3, "<C-R>=expand("<cword>")<CR>")<CR>
+nmap <leader>4 :call AddTempKeywords(4, "<C-R>=expand("<cword>")<CR>")<CR>
+nmap <leader>5 :call AddTempKeywords(5, "<C-R>=expand("<cword>")<CR>")<CR>
+nmap <leader>6 :call AddTempKeywords(6, "<C-R>=expand("<cword>")<CR>")<CR>
+nmap <leader>7 :call AddTempKeywords(7, "<C-R>=expand("<cword>")<CR>")<CR>
+nmap <leader>8 :call AddTempKeywords(8, "<C-R>=expand("<cword>")<CR>")<CR>
+nmap <leader>9 :call AddTempKeywords(9, "<C-R>=expand("<cword>")<CR>")<CR>
+nmap <leader>0 :call AddTempKeywords(0, "<C-R>=expand("<cword>")<CR>")<CR>
+nmap <leader>ca :call clearmatches()<CR>
+nmap <leader>c1 :call DeleteTempKeywords(1)<CR>
+nmap <leader>c2 :call DeleteTempKeywords(2)<CR>
+nmap <leader>c3 :call DeleteTempKeywords(3)<CR>
+nmap <leader>c4 :call DeleteTempKeywords(4)<CR>
+nmap <leader>c5 :call DeleteTempKeywords(5)<CR>
+nmap <leader>c6 :call DeleteTempKeywords(6)<CR>
+nmap <leader>c7 :call DeleteTempKeywords(7)<CR>
+nmap <leader>c8 :call DeleteTempKeywords(8)<CR>
+nmap <leader>c9 :call DeleteTempKeywords(9)<CR>
+nmap <leader>c0 :call DeleteTempKeywords(0)<CR>
+function! AddTempKeywords(index, pattern)
+    let list_name='g:TempKeywordList' . a:index
+    let group_name='TempKeyword' . a:index
+    if !exists(list_name)
+        let {list_name}=[]
+    endif
+    let {list_name}=add({list_name}, matchadd(group_name, a:pattern))
+    return len({list_name})
+endfunction
+function! DeleteTempKeywords(index)
+    let list_name='g:TempKeywordList' . a:index
+    if !exists(list_name)
+        return -1
+    endif
+    for id in {list_name}
+        if id != ''
+            :call matchdelete(id)
+        endif
+    end
+endfunction
+
+
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cscope setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"if has("cscope")
+"  set csprg=/usr/bin/cscope
+"  set csto=1
+"  set cst
+"  set nocsverb
+"  " add any database in current directory
+"  if filereadable("cscope.out")
+"      cs add cscope.out
+"  endif
+"  set csverb
+"endif
+"
+"" [S] Find this C symbol
+"nmap cs :cs find s
+"
+"" [G] Find this definition
+"nmap cg :cs find g
+"
+"" [C] Find functions calling this function
+"nmap cc :cs find c
+"
+"" [T] Find this text string
+"nmap ct :cs find t
+"
+"" [E] Find this egreo pattern
+"nmap ce :cs find e
+"
+"nmap cf :cs find f
+"
+"" [I] Find files #including this file
+"nmap ci :cs find i ^=expand("")$
+"
+"" [D] Find functions called by this function
+"nmap cd :cs find d
+"
+
+
+" // The switch of the Source Explorer 
+nmap <F8> :SrcExplToggle<CR> 
+
+" // Set the height of Source Explorer window 
+let g:SrcExpl_winHeight = 16 
+
+" // Set 100 ms for refreshing the Source Explorer 
+let g:SrcExpl_refreshTime = 300 
+
+" // Set "Enter" key to jump into the exact definition context 
+let g:SrcExpl_jumpKey = "<ENTER>" 
+
+" // Set "Space" key for back from the definition context 
+let g:SrcExpl_gobackKey = "<SPACE>" 
+
+" // In order to avoid conflicts, the Source Explorer should know what plugins
+" // except itself are using buffers. And you need add their buffer names into
+" // below listaccording to the command ":buffers!"
+let g:SrcExpl_pluginList = [ 
+        \ "__Tag_List__", 
+        \ "_NERD_tree_" 
+    \ ] 
+
+" // Enable/Disable the local definition searching, and note that this is not 
+" // guaranteed to work, the Source Explorer doesn't check the syntax for now. 
+" // It only searches for a match with the keyword according to command 'gd' 
+let g:SrcExpl_searchLocalDef = 1 
+
+" // Do not let the Source Explorer update the tags file when opening 
+let g:SrcExpl_isUpdateTags = 0 
+
+
+
+
